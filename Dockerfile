@@ -1,7 +1,11 @@
-FROM golang as builder
+ARG OS="windows"
+ARG ARCH="amd64"
+
+FROM quay.io/projectquay/golang:1.20 as builder
 WORKDIR /src
 COPY src .
-RUN CGO_ENABLED=0 go build -o app
+
+RUN GO_ENABLED=0 GOOS=$OS GOARCH=$ARCH go build -o app
 
 FROM scratch
 ADD ./html /html
