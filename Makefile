@@ -10,7 +10,7 @@ windows:
 	docker run $(IMAGE_NAME)
 macos:
 	docker build --build-arg OS=darwin --build-arg ARCH=$(shell arch) -t $(IMAGE_NAME) .
-	docker run $(IMAGE_NAME)
+	docker run -p 8080:8080 $(IMAGE_NAME)
 image:
 	docker build --build-arg OS=linux --build-arg ARCH=${shell dpkg --print-architecture} -t $(IMAGE_NAME) .
 	docker run $(IMAGE_NAME)
